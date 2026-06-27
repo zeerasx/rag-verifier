@@ -22,3 +22,7 @@ __pycache__/
 
 # environment files
 .env
+
+#data (Reproducible data not to be stored in the repo)
+data/*.json
+data/*.csv
