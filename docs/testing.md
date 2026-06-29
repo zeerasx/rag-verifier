@@ -13,3 +13,4 @@ The goal is not exhaustive testing but ensuring that core components remain func
 - Dataset subset generation
 - Dataset preprocessing output
 - Sentence corpus
+- Retriever init, top-k retrieval, result schema validation, retrival o/p generation
