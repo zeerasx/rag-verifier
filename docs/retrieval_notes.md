@@ -42,3 +42,11 @@ Future work may explore:
 - HNSW
 - IVF
 - Hybrid retrieval
+
+
+
+### Duplicate Suppression
+
+To improve result diversity, duplicate document titles are suppressed during retrieval.
+
+This increases contextual coverage.

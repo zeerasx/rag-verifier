@@ -20,12 +20,7 @@ class Retriever:
 
         self.records = []
 
-        with open(
-            CORPUS_FILE,
-            "r",
-            encoding="utf-8"
-        ) as f:
-
+        with open(CORPUS_FILE,"r",encoding="utf-8") as f:
             for line in f:
                 self.records.append(json.loads(line))
 
@@ -35,26 +30,40 @@ class Retriever:
 
         distances, indices = (self.index.search(query_embedding,top_k))
 
-        # results = []
-        # for idx in indices[0]:
-        #     results.append(self.records[idx])
         results = []
-
+        seen_titles = set()
         for rank, (idx, distance) in enumerate(
             zip(indices[0], distances[0]),
             start=1
         ):
 
             record = self.records[idx]
+            title = record["document_title"]
+            if title in seen_titles:
+                continue
 
-            result = RetrievalResult(
-                rank=rank,
-                score=float(distance),
-                document_title=record["document_title"],
-                sentence_id=record["sentence_id"],
-                text=record["text"]
+            seen_titles.add(title)
+            results.append(
+                RetrievalResult(
+                    rank = len(results) + 1,
+                    score = float(distance),
+                    document_title = title,
+                    sentence_id = record["sentence_id"],
+                    text = record["text"]
+                )
             )
 
-            results.append(result)
+            if len(results) >= top_k:
+                break
+
+            # result = RetrievalResult(
+            #     rank=rank,
+            #     score=float(distance),
+            #     document_title=record["document_title"],
+            #     sentence_id=record["sentence_id"],
+            #     text=record["text"]
+            # )
+
+            # results.append(result)
 
         return results
