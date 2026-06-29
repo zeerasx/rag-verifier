@@ -26,3 +26,19 @@ Reasons:
 - Widely used in semantic search
 
 Embedding Dimension: 384
+
+### Indexing Strategy
+
+Index Type: FAISS IndexFlatL2
+
+Reasons:
+
+- Simple baseline
+- Exact nearest neighbor search
+- Widely used in retrieval systems
+
+Future work may explore:
+
+- HNSW
+- IVF
+- Hybrid retrieval
