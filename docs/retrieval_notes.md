@@ -15,3 +15,14 @@ This structure supports:
 - Evidence attribution
 - Faithfulness analysis
 - Failure diagnosis
+- 
+### Embedding Model
+
+Selected Model: all-MiniLM-L6-v2
+
+Reasons:
+- Lightweight & CPU-friendly
+- Strong retrieval baseline
+- Widely used in semantic search
+
+Embedding Dimension: 384
