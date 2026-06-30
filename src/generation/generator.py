@@ -1,21 +1,31 @@
 from transformers import (
     AutoModelForCausalLM,
-    AutoTokenizer
+    AutoTokenizer,
+    BitsAndBytesConfig
 )
 
 import torch
 
 class Generator:
 
-    def __init__(self,model_name="Qwen/Qwen2.5-3B-Instruct"):
+    def __init__(self,model_name="Qwen/Qwen2.5-0.5B-Instruct"):
 
         self.tokenizer = (AutoTokenizer.from_pretrained(model_name))
+
+        # Define quantization config
+        quant_config = BitsAndBytesConfig(
+            load_in_4bit=True,              # enable 4-bit quantization
+            bnb_4bit_use_double_quant=True, # improves compression
+            bnb_4bit_quant_type="nf4",      # recommended quantization type
+            bnb_4bit_compute_dtype=torch.float16  # compute in half precision
+        )
 
         self.model = (
             AutoModelForCausalLM.from_pretrained(
                 model_name,
                 torch_dtype="auto",
-                device_map="auto"
+                device_map="auto",
+                quantization_config=quant_config
             )
         )
 
