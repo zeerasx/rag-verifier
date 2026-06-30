@@ -13,6 +13,11 @@ class NLIVerifier:
         )
 
     def verify(self,context,answer):
+        if not answer:
+            return {"label":"unsupported","score":0.0}
+
+        if not context:
+            return {"label":"unsupported","score":0.0}
 
         labels = ["supported","contradicted"]
 

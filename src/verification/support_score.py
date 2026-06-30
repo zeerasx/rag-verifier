@@ -5,7 +5,12 @@ class SupportScorer:
         self.verifier = NLIVerifier()
 
     def compute(self, contexts, answer):
+        if not answer:
+            return 0.0
 
+        if not contexts:
+            return 0.0
+    
         scores = []
         for context in contexts:
             result = (self.verifier.verify(context, answer))
