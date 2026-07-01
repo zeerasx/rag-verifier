@@ -1,0 +1,7 @@
+{
+  "question": "Who developed BERT?",
+  "answer": "Google developed BERT.",
+  "retrieval_hit": true,
+  "support_score": 0.87,
+  "classification": "supported"
+}
